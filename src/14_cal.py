@@ -30,3 +30,64 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+# user_input = input('Enter a month and year, separated by a comma: ').split(',')
+user_input = sys.argv
+print(user_input)
+
+today = str(datetime.today()).split(' ') # format -- ['2020-09-01', '22:04:25.852009']
+today_simple = today[0].split('-') # format -- ['2020', '09', '01']
+
+# print calendar for current month if no month or year is specified
+if len(user_input) == 1:
+    try: 
+        year = int(today_simple[0])
+        month = today_simple[1]
+        
+        if month[0] == '0':
+            month = int(month[1])
+
+        print(calendar.month(int(year), int(month), 2, 1))
+    except:
+        print('Enter "14_cal.py [month] [year] where the month and year are numerical values')
+        sys.exit()
+elif len(user_input) == 2:
+    # if the second input is a year
+    try:
+        if len(user_input[1]) == 4:
+            year = int(user_input[1])
+            month = today_simple[1]
+
+            if month[0] == '0':
+                month = int(month[1])
+
+            print(calendar.month(year, int(month), 2, 1))
+        # if the second input is a month
+        elif len(user_input[1]) < 3 and len(user_input[1]) > 0:
+            year = int(today_simple[0])
+            month = user_input[1]
+
+            if month[0] == '0':
+                month = int(month[1])
+
+            print(calendar.month(year, int(month), 2, 1))
+    except:
+        print('Enter "14_cal.py [month] [year] where the month and year are numerical values')
+        sys.exit()
+elif len(user_input) == 3:
+    try:
+        year = int(user_input[2])
+        month = user_input[1]
+
+        if month[0] == '0':
+            month = int(month[1])
+        
+        month = int(month)
+
+        print(calendar.month(year, int(month), 2, 1))
+    except:
+        print('Enter "14_cal.py [month] [year] where the month and year are numerical values')
+        sys.exit()
+else:
+    print('Enter "14_cal.py [month] [year] where the month and year are numerical values')
+    sys.exit()
