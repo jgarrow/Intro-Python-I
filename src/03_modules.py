@@ -16,6 +16,7 @@ for i in sys.argv:
 # Print out the OS platform you're using:
 # YOUR CODE HERE
 # only found sys.getwindowsversion(), but I have a Mac
+print(sys.platform)
 
 # Print out the version of Python you're using:
 # YOUR CODE HERE
