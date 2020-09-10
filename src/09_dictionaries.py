@@ -15,6 +15,8 @@ has the following keys:
  - name: a name string for this location
 """
 
+from pprint import pprint
+
 waypoints = [
     {
         "lat": 43,
@@ -35,6 +37,14 @@ waypoints = [
 
 # Add a new waypoint to the list
 # YOUR CODE HERE
+waypoints.append({
+    "lat": 42,
+    "lon": -120,
+    "name": "the good place"
+})
+
+pprint(waypoints)
+print('\n-------------------\n')
 
 # Modify the dictionary with name "a place" such that its longitude
 # value is -130 and change its name to "not a real place"
@@ -42,6 +52,28 @@ waypoints = [
 # waypoints list.
 
 # YOUR CODE HERE
+desiredPlace = 0
+
+# update desiredPlace with index of dictionary in list "waypoints" that has a key "name" with the value "a place"
+for i, place in enumerate(waypoints):
+    if place["name"] == "a place":
+        desiredPlace = i
+
+waypoints[desiredPlace].update({
+    "lon": -130
+})
+
+pprint(waypoints)
+print('\n-------------------\n')
+
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+for i, place in enumerate(waypoints):
+    placeKeys = place.keys()
+    print(f"waypoint index: {i}")
+
+    for daKey in placeKeys:
+        print(place[daKey])
+    
+    print('\n~~~~~~~~~~~~~~~\n')
